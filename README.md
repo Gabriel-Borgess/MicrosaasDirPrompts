@@ -4,7 +4,7 @@ Bem-vindo ao **MicroSaaS Prompts**! 🚀 Uma comunidade dedicada a inspirar, com
 
 ## Sobre o Projeto
 
-MicroSaaS Prompts é uma plataforma onde você pode descobrir novas ideias, compartilhar suas criações e explorar as ideias mais recentes relacionadas ao universo do MicroSaaS. Nossa comunidade é impulsionada por IA, permitindo que você crie, compartilhe e interaja com prompts gerados automaticamente.
+MicroSaaS Prompts é uma plataforma onde você pode descobrir novas ideias, compartilhar suas criações e explorar as ideias mais recentes relacionadas ao universo do MicroSaaS. Nossa comunidade é impulsionada por IA, permitindo que você crie, compartilhe e interaja com prompts gerados pela comunidade.
 
 ## Funcionalidades
 
