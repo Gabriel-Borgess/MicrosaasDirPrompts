@@ -12,10 +12,10 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 
       <form
         onSubmit={handleSubmit}
-        className='mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism p-5'
+        className='mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism p-5 bg-white/20 border border-gray-200 rounded-xl shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur'
       >
         <label>
-          <span className='font-satoshi font-semibold text-base text-gray-700'>
+          <span className='font-satoshi font-semibold text-base text-white'>
             Seu Prompt de IA
           </span>
           <textarea
@@ -28,7 +28,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         </label>
 
         <label>
-          <span className='font-satoshi font-semibold text-base text-gray-700'>
+          <span className='font-satoshi font-semibold text-base text-white'>
             Adicione uma tag{" "}
             <span className='font-normal'>(#microsaas, #desenvolvimento, #idea, etc.)</span>
           </span>
@@ -43,7 +43,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         </label>
 
         <div className='flex justify-end items-center gap-4'>
-          <Link href='/' className='text-gray-500 text-sm'>
+          <Link href='/' className='text-white text-sm'>
             Cancelar
           </Link>
           <button
