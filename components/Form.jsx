@@ -7,33 +7,30 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         <span className='blue_gradient'>{type} Prompt</span>
       </h1>
       <p className='desc text-left max-w-md'>
-      Crie e compartilhe os seus melhores prompts voltadas para o universo MicroSAAS, e deixe sua imaginação correr solta em nossa plataforma.
+        Crie e compartilhe os seus melhores prompts voltadas para o universo MicroSAAS, e deixe sua imaginação correr solta em nossa plataforma.
       </p>
 
       <form
         onSubmit={handleSubmit}
-        className='mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism'
+        className='mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism p-5'
       >
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
-          Seu Prompt de IA
+            Seu Prompt de IA
           </span>
-
           <textarea
             value={post.prompt}
             onChange={(e) => setPost({ ...post, prompt: e.target.value })}
             placeholder='Escreva seu prompt aqui...'
             required
-            className='form_textarea '
+            className='form_textarea'
           />
         </label>
 
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Adicione uma tag{" "}
-            <span className='font-normal'>
-              (#microsaas, #desenvolvimento, #idea, etc.)
-            </span>
+            <span className='font-normal'>(#microsaas, #desenvolvimento, #idea, etc.)</span>
           </span>
           <input
             value={post.tag}
@@ -45,15 +42,15 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           />
         </label>
 
-        <div className='flex-end mx-3 mb-5 gap-4'>
+        <div className='flex justify-end items-center gap-4'>
           <Link href='/' className='text-gray-500 text-sm'>
             Cancelar
           </Link>
-
           <button
             type='submit'
             disabled={submitting}
-            className="px-5 py-1.5 text-sm bg-blue-500 rounded-full text-white">
+            className='black_btn'
+          >
             {submitting ? `Enviando...` : type}
           </button>
         </div>
