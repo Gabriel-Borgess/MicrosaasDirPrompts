@@ -91,7 +91,7 @@ const Feed = () => {
       </form>
 
       {/* Tag Menu */}
-      <div className="flex justify-center space-x-4 my-4">
+      <div className="flex justify-center space-x-4 my-4 flex-wrap">
         {predefinedTags.map((tag) => (
           <button
             key={tag}
