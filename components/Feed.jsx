@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
 import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
@@ -20,16 +19,15 @@ const PromptCardList = ({ data, handleTagClick }) => {
 
 const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
-
-  // Search states
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const promptsPerPage = 10;
 
   const fetchPosts = async () => {
     const response = await fetch("/api/prompt");
     const data = await response.json();
-
     setAllPosts(data);
   };
 
@@ -51,7 +49,6 @@ const Feed = () => {
     clearTimeout(searchTimeout);
     setSearchText(e.target.value);
 
-   
     setSearchTimeout(
       setTimeout(() => {
         const searchResult = filterPrompts(e.target.value);
@@ -67,6 +64,19 @@ const Feed = () => {
     setSearchedResults(searchResult);
   };
 
+  const totalPages = Math.ceil((searchText ? searchedResults.length : allPosts.length) / promptsPerPage);
+  const indexOfLastPrompt = currentPage * promptsPerPage;
+  const indexOfFirstPrompt = indexOfLastPrompt - promptsPerPage;
+  const currentPrompts = (searchText ? searchedResults : allPosts).slice(indexOfFirstPrompt, indexOfLastPrompt);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
   return (
     <section className='feed'>
       <form className='relative w-full flex-center'>
@@ -80,17 +90,58 @@ const Feed = () => {
         />
       </form>
 
+      {/* Tag Menu */}
+      <div className="flex justify-center space-x-4 my-4">
+        {predefinedTags.map((tag) => (
+          <button
+            key={tag}
+            onClick={() => handleTagClick(tag)}
+            className='text-white hover:text-blue-500 transition'
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+
       {/* All Prompts */}
-      {searchText ? (
-        <PromptCardList
-          data={searchedResults}
-          handleTagClick={handleTagClick}
-        />
-      ) : (
-        <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
-      )}
+      <PromptCardList data={currentPrompts} handleTagClick={handleTagClick} />
+
+      {/* Pagination */}
+      <div className="pagination flex justify-center items-center space-x-4 mt-6">
+        <button
+          disabled={currentPage === 1}
+          onClick={handlePrevPage}
+          className={`pagination-btn ${currentPage === 1 ? 'disabled' : ''}`}
+        >
+          &larr; Anterior
+        </button>
+        <button
+          disabled={currentPage === totalPages}
+          onClick={handleNextPage}
+          className={`pagination-btn ${currentPage === totalPages ? 'disabled' : ''}`}
+        >
+          Próxima &rarr;
+        </button>
+      </div>
     </section>
   );
 };
+
+const predefinedTags = [
+  "microsaas",
+  "saas",
+  "software",
+  "startup",
+  "assinatura",
+  "produtividade",
+  "automação",
+  "análise",
+  "faturamento",
+  "empreendedor",
+  "ideia",
+  "marketing",
+  "UI/UX",
+  "SEO",
+];
 
 export default Feed;

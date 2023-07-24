@@ -1,6 +1,8 @@
 import "@styles/globals.css";
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
+import Footer from '@components/Footer';
+import SearchMenu from "@components/SearchMenu";
 
 export const metadata = {
   title: "MicroSaaS Prompts",
@@ -18,7 +20,9 @@ const RootLayout = ({ children }) => (
         <main className='app'>
         <Nav />
           {children}
+          <SearchMenu />
         </main>
+        <Footer />
       </Provider>
     </body>
   </html>

@@ -1,6 +1,30 @@
 import Link from "next/link";
+const handleTagInputChange = (e) => {
+  setTagInput(e.target.value);
+};
+
+const handleTagInputKeyDown = (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    addTag();
+  }
+};
+
+const addTag = () => {
+  if (!tagInput.trim()) return; // Não adiciona tag vazia
+  setPost({ ...post, tags: [...post.tags, tagInput.trim()] });
+  setTagInput("");
+};
+
+const handleTagDelete = (tagToDelete) => {
+  setPost({
+    ...post,
+    tags: post.tags.filter((tag) => tag !== tagToDelete),
+  });
+};
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+  
   return (
     <section className='w-full max-w-full flex-start flex-col'>
       <h1 className='head_text text-left'>
